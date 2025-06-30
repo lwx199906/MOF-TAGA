@@ -25,7 +25,7 @@ MIN_FITNESS = 8  # 最小适应度阈值
 RESULTS_DIR = Path("results")
 
 DATA_PATH = r"database\GA100.csv"  # 数据文件路径
-MODEL_PATH = "model_output/xgb_model.pkl"  # 模型文件路径
+MODEL_PATH = "models/xgb_model.pkl"  # 模型文件路径
 
 # # 读取合法组合 CSV（列名应为：metal, linker1, linker2, topology）
 # valid_df = pd.read_csv("combination_counts.csv")
@@ -139,7 +139,6 @@ class GeneticOptimizer:
         return child
 
     def mutate(self, individual, avg_fitness):
-        """通用变异操作（无互穿约束，确保变异发生）"""
         fitness = self.eval_func(individual)
 
         mutate_rate = self._dynamic_rate(
